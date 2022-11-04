@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    [SerializeField] float controlSpeed = 10f; 
+    [SerializeField] float controlSpeed = 10f;
+    [SerializeField] float xRange = 5f;
+    [SerializeField] float yRange = 3.5f;    
     // Update is called once per frame
     void Update()
     {
@@ -13,11 +15,14 @@ public class PlayerControls : MonoBehaviour
         float yThrow = Input.GetAxis("Vertical");
 
         float xOffset = xThrow * Time.deltaTime * controlSpeed;
-        float yOffset = yThrow * Time.deltaTime * controlSpeed;
+        float rawXPos = transform.localPosition.x + xOffset;
+        float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
         
-        float newXPos = transform.localPosition.x + xOffset;
-        float newYPos = transform.localPosition.y + yOffset;
+        
+        float yOffset = yThrow * Time.deltaTime * controlSpeed;
+        float rawYPos = transform.localPosition.y + yOffset;
+        float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
 
-        transform.localPosition = new Vector3(newXPos, newYPos, transform.localPosition.z);
+        transform.localPosition = new Vector3(clampedXPos, clampedYPos, transform.localPosition.z);
     }
 }

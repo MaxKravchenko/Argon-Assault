@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlSpeed: 30
+  xRange: 10
+  yRange: 7
 --- !u!1001 &218985335782082
 PrefabInstance:
   m_ObjectHideFlags: 0
