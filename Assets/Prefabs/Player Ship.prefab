@@ -73,6 +73,10 @@ MonoBehaviour:
   controlSpeed: 30
   xRange: 10
   yRange: 7
+  positionPitchFactor: -2
+  controlPitchFactor: -15
+  positionYawFactor: 3
+  controlRollFactor: -15
 --- !u!1001 &218985335782082
 PrefabInstance:
   m_ObjectHideFlags: 0
