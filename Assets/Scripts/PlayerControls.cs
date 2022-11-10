@@ -19,6 +19,11 @@ public class PlayerControls : MonoBehaviour
 
     float yThrow, xThrow;
    
+    private void Start() 
+    {
+        //ParticleSystem ps = GetComponent<ParticleSystem>();
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -60,27 +65,21 @@ public class PlayerControls : MonoBehaviour
     {         
         if(Input.GetButton("Fire1"))
         {
-            ActiveLasers();
+            SetLaseresActive(true);
         }
         else
         {
-            DeactivateLasers();
+             SetLaseresActive(false);
         }      
     }
 
-    void ActiveLasers()
+    void SetLaseresActive(bool isActive)
     {
         foreach (GameObject laser in lasers)
         {
-            laser.SetActive(true);
+            var emissionModule = laser.GetComponent<ParticleSystem>().emission;
+            emissionModule.enabled = isActive;
         }
     }
 
-    void DeactivateLasers()
-    {
-        foreach (GameObject laser in lasers)
-        {
-            laser.SetActive(false);
-        }
-    }
 }
