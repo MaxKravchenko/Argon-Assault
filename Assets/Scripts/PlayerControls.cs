@@ -73,7 +73,7 @@ public class PlayerControls : MonoBehaviour
         }
         else
         {
-             SetLaseresActive(false);
+            SetLaseresActive(false);
         }      
     }
 
