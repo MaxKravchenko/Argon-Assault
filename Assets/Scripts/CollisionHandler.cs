@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {   
     //PARAMETERS
-    [SerializeField] float levelLoadDelay = 1f;
+    [SerializeField] float levelLoadDelay = 2f;
+    [SerializeField] ParticleSystem crashParticle;
     
     //STATE
     bool isTransitioning = false;
-
-
+    
     private void OnCollisionEnter(Collision other) 
     {
         if(isTransitioning) { return;}
@@ -30,11 +30,18 @@ public class CollisionHandler : MonoBehaviour
     {
         // todo add SFX upon crash
         // todo add particle effect upon crash
+        crashParticle.Play();
+        
+        //each child's mesh mesh renderer to false
+        MeshRenderer[] rs = GetComponentsInChildren<MeshRenderer>();
+        foreach(MeshRenderer r in rs)
+            r.enabled = false;
+            
+        GetComponent<BoxCollider>().enabled = false;
         isTransitioning = true;
         //audioSource.Stop();
         GetComponent<PlayerControls>().enabled = false;
         //audioSource.PlayOneShot(crash);
-        //crashParticle.Play();
         Invoke("ReloadLevel", levelLoadDelay);
     }
 
