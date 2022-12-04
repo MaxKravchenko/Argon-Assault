@@ -21,6 +21,11 @@ public class Enemy : MonoBehaviour
         KillEnemy();
     }
 
+    void ProcessHit()
+    {
+        scoreBoard.IncreaseScore(scorePerHit);
+    }
+    
     void KillEnemy()
     {
         GameObject vfx = Instantiate(deathVFX, transform.position, Quaternion.identity);
@@ -28,8 +33,5 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void ProcessHit()
-    {
-        scoreBoard.IncreaseScore(scorePerHit);
-    }
+
 }
