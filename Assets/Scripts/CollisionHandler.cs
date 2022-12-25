@@ -15,14 +15,14 @@ public class CollisionHandler : MonoBehaviour
     private void OnCollisionEnter(Collision other) 
     {
         if(isTransitioning) { return;}
-        Debug.Log(this.name + "--Collided with--" + other.gameObject.name);
+        //Debug.Log(this.name + "--Collided with--" + other.gameObject.name);
         StartCrashSequence();    
     }
 
     private void OnTriggerEnter(Collider other) 
     {
         if(isTransitioning) { return;}
-        Debug.Log($"{this.name} **Triggered by** {other.gameObject.name}");
+        //Debug.Log($"{this.name} **Triggered by** {other.gameObject.name}");
         StartCrashSequence();    
     }
 
